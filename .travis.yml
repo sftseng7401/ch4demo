@@ -24,6 +24,7 @@ jobs:
   include:
     - stage: push
       script:
+        - ls
         - docker build -t ch4-web:latest -f ./Dockerfile .
         - docker tag ch4-web:latest registry.heroku.com/advance-tech-ch4/web
         - docker push registry.heroku.com/advance-tech-ch4/web
