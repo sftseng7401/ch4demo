@@ -34,5 +34,5 @@ jobs:
       deploy:
         - provider: script
           script: heroku container:release web --app advance-tech-ch4
-          on:
-            branches: test
+          on: # 不設這個 預設只有在 master branch 會做 deploy
+            branch: test
