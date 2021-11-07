@@ -17,6 +17,8 @@ FROM python:3.7
 # 把本地端的 requirement 複製到 container中
 # ADD requirements.txt /app/requirements.txt
 
+RUN ls
+
 # pip是python的套件管理工具
 RUN pip install -r requirements.txt
 
