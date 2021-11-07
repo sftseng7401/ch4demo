@@ -11,6 +11,8 @@
 # Base image 是 python:3.7
 FROM python:3.7
 
+RUN mkdir /app
+
 # requirements.txt 裡有我們需要的套件資訊， 
 # 把他複製到container裡，路徑為 /app/requirements.txt
 COPY ./requirements.txt /app/requirements.txt
