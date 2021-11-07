@@ -9,7 +9,7 @@
 #    └── requirements.txt
 
 # Base image 是 python:3.7
-FROM python:3.7
+FROM alpine:3.9 AS compile-image
 
 # RUN mkdir /app
 
