@@ -17,14 +17,14 @@ RUN mkdir /app
 # 把本地端的 requirement 複製到 container中
 COPY ./requirements.txt /app/requirements.txt
 
-# pip是python的套件管理工具
-RUN pip install -r /app/requirements.txt
-
 # # 切換到container裡的 /app 路徑作為工作目錄 
-# WORKDIR /app
+WORKDIR /app
+
+# pip是python的套件管理工具
+RUN pip install -r requirements.txt
 
 # # 把本地端myapp資料夾複製到container的當前目錄 (/app)
-# ADD ./myapp .
+ADD ./myapp .
 
 # 5000是我們服務所在的port
 EXPOSE 5000
@@ -38,7 +38,7 @@ RUN chown appuser:appuser -R --verbose /app
 # 把container的 user 轉到appuser
 USER appuser
 # CMD代表command，當你啟動這個container時，會預設執行這個指令
-CMD ["python3","/myapp/app.py"]
+CMD ["python3","/app/app.py"]
 
 ################################################################################################################################################################
 
