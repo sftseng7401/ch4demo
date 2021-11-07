@@ -15,7 +15,7 @@ RUN mkdir /app
 
 # requirements.txt 裡有我們需要的套件資訊， 
 # 把他複製到container裡，路徑為 /app/requirements.txt
-COPY ./requirements.txt /app/requirements.txt
+ADD ./requirements.txt /app/requirements.txt
 
 # pip是python的套件管理工具
 RUN pip install -r /app/requirements.txt
