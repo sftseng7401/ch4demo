@@ -1,0 +1,36 @@
+services:
+  - docker
+env:
+  global:
+    - DOCKER_COMPOSE_VERSION=1.23.2
+    - secure: "vI+WHPtjMxoIZjUWYY+XVxshhshVzBViYiq4Yvv56v9VMgT/rjZlt0PIV4dOxSj7TgELVcY0ehzT5ElXyCWcmTocdBSZTPPsxGtyEnPREETrNf+levNqibRf5o6iBYU27cCuQIGGuZjy4jsuXgPqR3DGexuw4VmIJ94KYKMJVicpRoCGMCZaOTUi3TzZx5luszQek8GtQ6uC/7RqZ+oe3FhcBKAOlPYg34DWyIqliig/uegtJ47ZGGVkPwz41jCmWuQeYvR+i3W0mveAOMu+y7gNIxncBhbpeQUJHpY2jm+2Lcd9AYfpQLdcw5DJpIGUxTDamA/zbV/kY8YLwoW3b/EKU8tyjtaj9zUTuACPujpeb6mHbX/5MgaiI/8oxOij1pNJ8V3a06N0cfdMDUejQb0IKbQXHEeEbIQpYjCu76/y8NsMdjb0lKnhg6vTV3LcrP5VSPFy8Y9pgwYGL25N71THhg3DGVA92zictWQefowexcXxk5Iuj+tBhsraVo2RhhSmSy/FGhLqvm7MCTpWqkrP2rm3it/6y/yg93w93qaizFU/MzvAJBXJEt31Y8L0Dk/c8QR1HNBrQM5ylSHr9Pc1exB6qDvyEVj8tn5U/5C/AKBONlCzI7iYdxQ3u62v373zBcMGv4KzjfW6OiC70Ct54O43o1tMbH6jtz5pGZ4="
+    - secure: "eLtE3zTwRegz7huEAczQM6YMTYg0OEz/rqnAlJ/lyNkaa5DrKa5FyV/HZ65MSsY8Hzh91KfbuqcWDR/9E8jJ+RGTgyvF4l6BVhQNFXueMOFqyUKUHLj3XRBdkSi3Aukk4iDbj/FLUN2B7aVh0JjFpjuHgWtpW7hcYfMg2pLZwPLKL3Vrkzq+fL4nIF/wYtzD5W8+ata80Arx0tM7yJjhvuCp7zP20jyb2VtysXUhMYXr+PiLppHA6oNdZM5EFBI3Y/qWjDYU8fzOMREp/Dqn8JysqhX6HBCXa9N/k7nj7jgQTd1ueKwswxHSWlFTUQVNFZUK820b6cAnGgT+0hGowmjhcGOEFUG2TE6qY5TNM5e/v466uo4hhv0zRrjSBVrOx5ebg0wmo4cR5DYAU6M1T8TJHc0OAQfO++8kKSdVgmuxUAe0W5QttFlPJqZiNdCup0R5oIsdaxC01/cu5hNCP11P1LvxswanEvDCkmedFv9IYUf3C/G7sn51T71h4L0cxOaTigQTchD8r4kU6FJqIJBxS7FkE6Uo4TqBRcZ05ZH1CKksZYT4re85PEHu00o+ZbhMYcdBHNWFptJlmZS9KvisUYA+CJ/RLDPSS+DWIuxbFAyqz+pQkRaeADThceeWht8RPgCoMFmdrT5+1JXmF141pt7pwkahSCeh+vyIV7w="
+    - secure: "J1vE9hQOUjqGXsLL5B1lZLU6jNIa1d4FP5+q9MWfqyV45ka8QIt5/DlYkgCxWQS77Jfv601YFDLylrz48PqRV2IdQP1qegKyCC6GBQh32bpAyrwMDEAXtW332c8wws8cP7AyJQd+93B+mJM9EAyY5oweALCoy7Hf/TLmAqfRL/uJY7hJuFwGYh6m3B477bdJDPj18aNSU0H7sJ2JDlfUu9Ml/vXai8DF7l3zWhnVsq5mSOKP+wDg22lIHdDAvmr8N3pRtR21UpOSy7JWPXNbCkYl/F3OQzJW8ICgHpMgE7ztEdmL5sw8n9Vk9W7pPclR/QE5PzGC1VqjzTV4GBoPOUU5v6DqgLFJck2JYxUnHbNG1urrGR4mJ0n0/95sywiqjxb2HFY+OiiTz4W7DYfs1L7fUhY6jmW0OW5NTOuEH/4jm4n+oP9yYWUIcDfDtEzkUxY6GCguLRpKEMvVJxTVHDmd7WJwdDQnUFv/bnha1DEEZCMnjhLz5p+Ciw90TeZMY3DdoUHFxfHe1WmM3ikTnH2oG4OkywKpyMDwOH0lAHcWyEAcdBu8WUWMhGNl8OTP4ze/QIXmhrVBECCyNeBqt3XzHoKRg7V0WqS1BKa0bVIhLkJFwwte4+jDM2AaMZn1GwgZRnfOhUJk4JyIBbahV9eKVQUiFfcIXirJJxCbAA0="
+before_install:
+  # - sudo rm /usr/local/bin/docker-compose
+  # - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  #   -s`-`uname -m` > docker-compose
+  # - chmod +x docker-compose
+  # - sudo mv docker-compose /usr/local/bin
+  # - docker --version
+  # - docker-compose version
+  - echo "Login into Docker Hub"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - export GIT_SHA=`git rev-parse --short HEAD`
+  - echo "Building commit $GIT_SHA"
+  - echo "Login into heroku"
+  - heroku container:login
+jobs:
+  include:
+    - stage: push
+      script:
+        - docker build -t ch4-web:latest -f ./Dockerfile ./myapp
+        - docker tag ch4-web:latest registry.heroku.com/advance-tech-ch4/web
+        - docker push registry.heroku.com/advance-tech-ch4/web
+        # - docker tag ch4-web:latest hongminghsieh/ch4:$GIT_SHA
+        # - docker push hongminghsieh/ch4:$GIT_SHA
+        # - docker tag ch4-web:latest hongminghsieh/ch4:$TRAVIS_BRANCH
+        # - heroku container:push web --app advance-tech-ch4
+      deploy:
+        - provider: script
+          script: heroku container:release web --app advance-tech-ch4
