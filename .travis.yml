@@ -20,13 +20,11 @@ before_install:
   - echo "Building commit $GIT_SHA"
   - echo "Login into heroku"
   - heroku container:login
-  - docker build -t ch4-web:latest -f ./Dockerfile .
 jobs:
   include:
     - stage: push
       script:
-        - ls
-        # - docker build -t ch4-web:latest -f ./Dockerfile .
+        - docker build -t ch4-web:latest -f ./Dockerfile .
         - docker tag ch4-web:latest registry.heroku.com/advance-tech-ch4/web
         - docker push registry.heroku.com/advance-tech-ch4/web
         # - docker tag ch4-web:latest hongminghsieh/ch4:$GIT_SHA

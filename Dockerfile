@@ -17,8 +17,6 @@ RUN mkdir /app
 # 把本地端的 requirement 複製到 container中
 COPY ./requirements.txt /app/requirements.txt
 
-RUN ls
-
 # pip是python的套件管理工具
 RUN pip install -r /app/requirements.txt
 
