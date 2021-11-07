@@ -34,3 +34,5 @@ jobs:
       deploy:
         - provider: script
           script: heroku container:release web --app advance-tech-ch4
+          on:
+            branches: test
