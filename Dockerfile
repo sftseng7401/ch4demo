@@ -11,16 +11,16 @@
 # Base image 是 python:3.7
 FROM python:3.7
 
-# RUN mkdir /app
+RUN mkdir /app
 
 # requirements.txt 裡有我們需要的套件資訊
 # 把本地端的 requirement 複製到 container中
-# ADD requirements.txt /app/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 
 RUN ls
 
 # pip是python的套件管理工具
-RUN pip install -r requirements.txt
+RUN pip install -r /app/requirements.txt
 
 # # 切換到container裡的 /app 路徑作為工作目錄 
 # WORKDIR /app
