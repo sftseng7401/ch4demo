@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, render_template
+import os
 
 app = Flask(__name__, template_folder='templates/')
 
@@ -19,4 +20,5 @@ def get_ping():
 
 
 # test
-app.run(debug=True, host='0.0.0.0', port=5000)
+port = int(os.environ.get('PORT', 5000))
+app.run(debug=True, host='0.0.0.0', port=port)
