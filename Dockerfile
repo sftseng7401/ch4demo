@@ -17,7 +17,7 @@ RUN mkdir /app
 # 把本地端的 requirement 複製到 container中
 COPY ./requirements.txt /app/requirements.txt
 
-# # 切換到container裡的 /app 路徑作為工作目錄 
+# 切換到container裡的 /app 路徑作為工作目錄 
 WORKDIR /app
 
 # pip是python的套件管理工具
