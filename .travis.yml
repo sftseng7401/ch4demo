@@ -7,13 +7,6 @@ env:
     - secure: "qFlLckO4YovBZfLLelZ6NpEvudhUUv1ZrYRqj9RyV+PV3b2PzgF2ZgzPwmedkUGwZwK6fglOj475fr2bQCtaMOhvaW3s7eI6N6APt3I4cD1Eb+5ioOv8Qd1zz2GNFD2Mdsb/MN6tF2Sjd1q8OqHZKtZVGlfxSwA5uZnFDdkEjMcV9lxDarXWIrhUJHDWPoVdrSxMjTQPzlfDnSOCJycngeunaqmvCdjOaP49BAevhxOQyvsr7JBLqilq2t4/rWxRbFHLdmF2OFyS+pIq6Jq4fgbIt+OiTOaNMKvXE71kVMMcEc2/nk8ZJBser3Wws2mbnyO+d1pAgSKvhelqSzE48z560151WhEdN5q/bJL9QNu3FpGmejHc0DEwQKLBvcIzG0apSY1wzkmxNHTx4T7zXzUmIIr+0PmwTmgXXF38Tm2+A8Ood4cpYXxW5oxID9QN6T0tmHmtsu1BysDaCqubPqj5QkGjvUetjkF8B+h3RDhmGd55An6vu7HGA6Q0dJ6yjkt8OpzgBpFYbKIrVVgclkidX6OsVpbrfVyWDkluD5N18De4iTAo+fvUkUtzknNe/B+HvrNmtK1ake8n6F1SuRhz+5OpO97R/JacAyJfaPhHEdSUfQNqgTdfW0jdcFO/lnKLjsRsjlIt2KSWjuTBXKmBnADXzRxue+HbZ4N9+LE="
     - secure: "BRam2gCt2YFOcec1eIKf3/znHxv+a2Yi+dPMeNcTstNsonU0IyEhRKHsWLRgZ5DxQTnmoH212cJfBwKmf6kVTcg8UcVipTdrlzMKR/mAZ6ben4rrnbJQE2XmvKCQz2FciUgILB7Ls3zgiSunYow2moU2Ivc3ZP/9XNagGKcXO2x+PMjikC9jUfE6YYiepobwVTv31L+NoBWaSSkLB/Mud0P4bv/uNwNfxvOEigP+gbR+OawQatAs1k+MpbtmN58iEMkTyxSQ4O172atM0AUJCzi6Hc9kwRB/JIQEdBLLIrV5NihFORJIXgjooLo2VMF9kiRjwH/Du94KHCy6hy+3MslgXR7y/GtbcvRbKatZKhu0kEFEKu9VN5vGpMrQyTwsEKnoX2ewSzlUSc/QS2GISSjUqpFaJvhY+jd8r0ZC1yiOSncHKaa1jvNkMdutS8Ur3SU8VK5HBkZXq15lHALZqvGGrtb3jUYrWMmWAUth+wQab2DMHWDqnr9DbMrwQnR5sCDr4qqazD+adZpGYgSFOssVion2P1Q79yVPpfJYzMtybY005oul6YBQIstDfzIGMie8CkCpZvY1NHmuDB25cdZ9v6VG+bvQVwn1KftaSbj5BVrghhWwLQY+JK7vwHO/x9+9pbPXc8YMbBKCkpt8icgPTyYaZMbnp6bfjB09olA="
 before_install:
-  # - sudo rm /usr/local/bin/docker-compose
-  # - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
-  #   -s`-`uname -m` > docker-compose
-  # - chmod +x docker-compose
-  # - sudo mv docker-compose /usr/local/bin
-  # - docker --version
-  # - docker-compose version
   - echo "Login into Docker Hub"
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - export GIT_SHA=`git rev-parse --short HEAD`
@@ -27,10 +20,6 @@ jobs:
         - docker build -t ch4-web:latest -f ./Dockerfile .
         - docker tag ch4-web:latest registry.heroku.com/advance-tech-ch4/web
         - docker push registry.heroku.com/advance-tech-ch4/web
-        # - docker tag ch4-web:latest hongminghsieh/ch4:$GIT_SHA
-        # - docker push hongminghsieh/ch4:$GIT_SHA
-        # - docker tag ch4-web:latest hongminghsieh/ch4:$TRAVIS_BRANCH
-        # - heroku container:push web --app advance-tech-ch4
       deploy:
         - provider: script
           script: heroku container:release web --app advance-tech-ch4
