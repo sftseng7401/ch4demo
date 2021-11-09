@@ -2,15 +2,9 @@ services:
   - docker
 env:
   global:
-    - DOCKER_COMPOSE_VERSION=1.23.2
-    - secure: "Cyd2CY1Btyqt6MTdXUkvMDikYYAiHKZzhgZkuElBX57+tfIMamu3Gx4vsBE06J60hRba9EKaFUcqPl6TQhVRQgpYcpNDYinrW7CWHh/nHV7oLAfRWh1mf214ZNRYFeAndC+wXttZb9h9CCPc26Km+D5bR2TE73eoQ9U+g26ciy0K332QiGBnJVCPEIwJ+cE7sdZM97twYA+Ukksv0tiVmZQICZfoyDJSMKBb86T6keF7ClsJbLH0Xrp84h22yseHzVqUmdMinNnl3Q+HYlWz4T26uNDUodY8Sw7MiqrS0ol7gOAWfTGGFBDHdKbFmAsaHsVAreQ3P/9gAAIIF1cN1K1bIyDOcje66gFUh107DyDGafZn8DZQm6hUzEY3g7lu2+f0Offze4899Q7QpfAOEXRuxq3QzGc84cmvOk86oT637eUsK/uxNlBElCKza7yzq2WZJXrPhVxCx0y4dm2Bx4fvVq4pZD+OabAyPfSZN+Yxmudf/ztdbeefnfIJePxtt2peUicfs2OL3OkhipKOwJSDgdGNziLDfuSLhelbJ88EHzPWJlY2a4Yq4AwJLPDuGkR3DUJkLi+S6SULr0XUmSkQXyB9kWCgrCXWj67tiwqLWnlKSz8UlyMS3mH2RNLJLKUS91qjTk6zMFX+iL4oEjc8QHnO51n3kVZFcWNi2rY="
-    - secure: "qFlLckO4YovBZfLLelZ6NpEvudhUUv1ZrYRqj9RyV+PV3b2PzgF2ZgzPwmedkUGwZwK6fglOj475fr2bQCtaMOhvaW3s7eI6N6APt3I4cD1Eb+5ioOv8Qd1zz2GNFD2Mdsb/MN6tF2Sjd1q8OqHZKtZVGlfxSwA5uZnFDdkEjMcV9lxDarXWIrhUJHDWPoVdrSxMjTQPzlfDnSOCJycngeunaqmvCdjOaP49BAevhxOQyvsr7JBLqilq2t4/rWxRbFHLdmF2OFyS+pIq6Jq4fgbIt+OiTOaNMKvXE71kVMMcEc2/nk8ZJBser3Wws2mbnyO+d1pAgSKvhelqSzE48z560151WhEdN5q/bJL9QNu3FpGmejHc0DEwQKLBvcIzG0apSY1wzkmxNHTx4T7zXzUmIIr+0PmwTmgXXF38Tm2+A8Ood4cpYXxW5oxID9QN6T0tmHmtsu1BysDaCqubPqj5QkGjvUetjkF8B+h3RDhmGd55An6vu7HGA6Q0dJ6yjkt8OpzgBpFYbKIrVVgclkidX6OsVpbrfVyWDkluD5N18De4iTAo+fvUkUtzknNe/B+HvrNmtK1ake8n6F1SuRhz+5OpO97R/JacAyJfaPhHEdSUfQNqgTdfW0jdcFO/lnKLjsRsjlIt2KSWjuTBXKmBnADXzRxue+HbZ4N9+LE="
+    # should change to yours
     - secure: "BRam2gCt2YFOcec1eIKf3/znHxv+a2Yi+dPMeNcTstNsonU0IyEhRKHsWLRgZ5DxQTnmoH212cJfBwKmf6kVTcg8UcVipTdrlzMKR/mAZ6ben4rrnbJQE2XmvKCQz2FciUgILB7Ls3zgiSunYow2moU2Ivc3ZP/9XNagGKcXO2x+PMjikC9jUfE6YYiepobwVTv31L+NoBWaSSkLB/Mud0P4bv/uNwNfxvOEigP+gbR+OawQatAs1k+MpbtmN58iEMkTyxSQ4O172atM0AUJCzi6Hc9kwRB/JIQEdBLLIrV5NihFORJIXgjooLo2VMF9kiRjwH/Du94KHCy6hy+3MslgXR7y/GtbcvRbKatZKhu0kEFEKu9VN5vGpMrQyTwsEKnoX2ewSzlUSc/QS2GISSjUqpFaJvhY+jd8r0ZC1yiOSncHKaa1jvNkMdutS8Ur3SU8VK5HBkZXq15lHALZqvGGrtb3jUYrWMmWAUth+wQab2DMHWDqnr9DbMrwQnR5sCDr4qqazD+adZpGYgSFOssVion2P1Q79yVPpfJYzMtybY005oul6YBQIstDfzIGMie8CkCpZvY1NHmuDB25cdZ9v6VG+bvQVwn1KftaSbj5BVrghhWwLQY+JK7vwHO/x9+9pbPXc8YMbBKCkpt8icgPTyYaZMbnp6bfjB09olA="
 before_install:
-  - echo "Login into Docker Hub"
-  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - export GIT_SHA=`git rev-parse --short HEAD`
-  - echo "Building commit $GIT_SHA"
   - echo "Login into heroku"
   - heroku container:login
 jobs:
@@ -18,10 +12,13 @@ jobs:
     - stage: push
       script:
         - docker build -t ch4-web:latest -f ./Dockerfile .
+        # should change to yours
         - docker tag ch4-web:latest registry.heroku.com/advance-tech-ch4/web
+        # should change to yours
         - docker push registry.heroku.com/advance-tech-ch4/web
       deploy:
         - provider: script
+          # should change to yours
           script: heroku container:release web --app advance-tech-ch4
           on: # 不設這個 預設只有在 master branch 會做 deploy
             branch: main
