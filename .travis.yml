@@ -3,7 +3,8 @@ services:
 env:
   global:
     # should change to yours
-    - secure: "m3crwM66BU7LZ3SifohUGNtxiKvr1Q8I4s/XIvr+jzauGcuIf8XDZj1uA4KV35RRS2HzjV1BANmXbSmG0hF6djoerQWYjzrVAJuTFuZLFQzJORrSAfeQg7G8BNP+LZpQYNgXvz3tYrp9Y51mpE6BRv5GXvQ9xdiHTXMs2CO0DmELYRRVD7D8xXG9Ha2ZUd5LqsrSzv6C1HZF4JzdT4AClfJYCrF2Tj4YbIxXA8bx4FVLIetVIXX3pFa/mdvowEVb41vVAncDkRBDnQH0+MuR76xwyLnIxSdhZ1Q47IK8p0L8k6ma2uNg6S2eptUg3xi/6GN5d8yui1+Xq4GxyM1cuUs8V6DKL2FFw2P0n55MLFzkzSWrfkmJtvZoyMMlepH1YLHOQ3IOsUJym7zrzWRWqdEPLExibkYjeHnE6poMR7utsEhAphg46BE/VzYc5LCpLWqdjguWiAarFeF6leihy/lbZVt+x85Rmn8NSe3vrIkTl7EKAxH9r2VMUAj6e8QhJ09W12on2rnBOm0r50+tsE1zzKOOYnaPAefyvQCm/rpT2z/aC2Dl4MZWeRHUd6R4fVoWfCHnP5W8KTbcFavQ91ZRd/gZ9OfV2y3bNlXaPyZCQ/8DCiLbnWEC27W6Pe6UGA15X9jnIeibVJwmfhpRzU8N2RF6scSqRn1UccXwC8s="
+    - secure: "dyDvDua+1R+f0/aHJIYAmmcTD6DFr8FzYhn2Dp0IlfWv0kA0zQtCjVMAxMFJTmhdH4u9hGf26pCe7CbdJRXHd5/rdZws/oovRtS8OdAf3SYdkk73VsJgPfPMPYJYScCcTt3xiTQOLpC8S/LjFlSOrC5fwQRYJy5i6ydQ89bnsU82E6/PTRRxHZmVQqa21325BPLdImcowhjiWw1SlSGsYZcpy0q3Wx5ZTFw5NQcyMBV4SXxDb+hxW3e1CpkmzbVB14KSUppMOiJnpunmgghy91S8rjclKnlKXUVS7AAXT0ZEmCaQNg1AC+HFngPyazs8brH5YlN1k7RQ8UgjdYoUXAhps/GBio2VMusbLXuoxxrNi6iJ9R4bd6s0SRdd0IgIX0uEUNUuYjw79bsNZUI9PFqmOmDa5jnaWUm6L94MzsqX28DJgPnAXyL5laOM87A3m4UxmZLUqN9L+pMJaVpDZCpg1NOACQhDaBjgOctUcE8JcwRgiN04RbdB+yA8+Us5YRkAyJWGMt6NL9SNf0TUPTME+zmSke6KISsvnIQFlWE8LycrR8aiQNi22oxd/IAHujbG1rAH2gC1ko7hb1nLMzcx5TU/6Oosbv4phWDKwAzd3eKgamWYlj5srOWjaoQg3JMKbY4oDAGO1kVYRTP5CYxZZoQZmfkQw0k3MqbFc6o="
+    
 before_install:
   - echo "Login into heroku"
   - heroku container:login
@@ -13,12 +14,12 @@ jobs:
       script:
         - docker build -t ch4-web:latest -f ./Dockerfile .
         # should change to yours
-        - docker tag ch4-web:latest registry.heroku.com/advance-tech-ch4/web
+        - docker tag ch4-web:latest registry.heroku.com/ch4demo/web
         # should change to yours
-        - docker push registry.heroku.com/advance-tech-ch4/web
+        - docker push registry.heroku.com/ch4demo/web
       deploy:
         - provider: script
           # should change to yours
-          script: heroku container:release web --app advance-tech-ch4
+          script: heroku container:release web --app ch4demo
           on: # 不設這個 預設只有在 master branch 會做 deploy
             branch: main
